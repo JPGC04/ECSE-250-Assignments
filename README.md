@@ -1,4 +1,4 @@
-# ECSE-250-Assignments
+# ECSE-250-Software-Development
 This repository contains the assignments for ECSE 250 - Fundamentals of Software Development at McGill University.
 The assignments are organized into three folders: A1, A2, and A3 and are intended to be run independently in IntelliJ IDEA.
 
