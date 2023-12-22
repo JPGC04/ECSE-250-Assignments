@@ -63,7 +63,8 @@ public class Customer {
     }
 
     public int checkOut() {
-        int totalCost = this.customerBasket.getTotalCost();;
+        int totalCost = this.customerBasket.getTotalCost();
+        ;
         if (this.customerBalance < totalCost) {
             throw new IllegalStateException("The balance is not enough to cover the cost of this basket.");
         }

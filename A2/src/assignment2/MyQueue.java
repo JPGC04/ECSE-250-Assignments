@@ -10,15 +10,19 @@ public class MyQueue<E> {
     public boolean enqueue(E e) {
         return this.myQueue.addFirst(e);
     }
+
     public E dequeue() {
         return this.myQueue.removeLast();
     }
+
     public boolean isEmpty() {
         return this.myQueue.isEmpty();
     }
+
     public void clear() {
         this.myQueue.clear();
     }
+
     public boolean equals(Object object) {
         return ((object instanceof MyQueue<?>) && (this.myQueue.equals(((MyQueue<?>) object).myQueue)));
     }

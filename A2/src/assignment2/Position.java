@@ -12,6 +12,7 @@ public class Position {
         this.yCoord = y;
 
     }
+
     public Position(Position positionInput) {
         if (positionInput.getX() < 0 || positionInput.getY() < 0) {
             throw new IllegalArgumentException();
@@ -29,6 +30,7 @@ public class Position {
         this.yCoord = y;
 
     }
+
     public void reset(Position positionInput) {
         if (positionInput.getX() < 0 || positionInput.getY() < 0) {
             throw new IllegalArgumentException();
@@ -36,18 +38,22 @@ public class Position {
         this.xCoord = positionInput.xCoord;
         this.yCoord = positionInput.yCoord;
     }
+
     public int getDistance(Position inputPosition) {
         if (inputPosition.xCoord < 0 || inputPosition.yCoord < 0) {
             throw new IllegalArgumentException();
         }
         return (Math.abs(inputPosition.getX() - this.getX()) + Math.abs(inputPosition.getY() - this.getY()));
     }
+
     public int getX() {
         return this.xCoord;
     }
+
     public int getY() {
         return this.yCoord;
     }
+
     public void moveWest() {
         if (this.xCoord - 1 < 0 || this.yCoord < 0) {
             throw new IllegalArgumentException();
@@ -55,20 +61,22 @@ public class Position {
         this.xCoord--;
 
     }
+
     public void moveEast() {
         if (this.xCoord + 1 < 0 || this.yCoord < 0) {
             throw new IllegalArgumentException();
         }
         this.xCoord++;
 
-
     }
+
     public void moveNorth() {
         if (this.xCoord < 0 || this.yCoord - 1 < 0) {
             throw new IllegalArgumentException();
         }
         this.yCoord--;
     }
+
     public void moveSouth() {
         if (this.xCoord < 0 || this.yCoord + 1 < 0) {
             throw new IllegalArgumentException();
@@ -78,6 +86,7 @@ public class Position {
     }
 
     public boolean equals(Object object) {
-        return ((object instanceof Position) && (((Position) object).getX() == this.getX()) && (((Position) object).getY() == this.getY()));
+        return ((object instanceof Position) && (((Position) object).getX() == this.getX())
+                && (((Position) object).getY() == this.getY()));
     }
 }

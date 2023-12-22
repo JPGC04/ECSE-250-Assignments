@@ -7,7 +7,9 @@ public abstract class Reservation {
         this.clientName = clientName;
     }
 
-    public final String reservationName() { return this.clientName; }
+    public final String reservationName() {
+        return this.clientName;
+    }
 
     public abstract int getCost();
 

@@ -1,26 +1,25 @@
-import assignment2.* ;
+import assignment2.*;
 
 import org.junit.jupiter.api.*;
 import java.lang.reflect.Field;
 import java.util.NoSuchElementException;
 import static org.junit.jupiter.api.Assertions.*;
-import java.util.Iterator ;
+import java.util.Iterator;
 
 import java.io.*;
 import java.time.*;
 import java.time.format.DateTimeFormatter;
 import java.time.chrono.ChronoLocalDateTime;
 
-
 class SyntaxTest {
 
     @Test
     @Tag("score:-100")
     @DisplayName("Syntax Test for MyList")
-    void syntaxTestMyList() throws NoSuchMethodException{
+    void syntaxTestMyList() throws NoSuchMethodException {
 
         Class<?> mList = MyList.class;
-        //Check if MyList is an Interface
+        // Check if MyList is an Interface
         assertTrue(mList.isInterface());
 
         // Check the methods by signature
@@ -42,11 +41,11 @@ class SyntaxTest {
     @Test
     @Tag("score:0")
     @DisplayName("Syntax Test for MyLinkedList")
-    void syntaxTestMyLinkedList() throws NoSuchMethodException, NoSuchFieldException{
+    void syntaxTestMyLinkedList() throws NoSuchMethodException, NoSuchFieldException {
         Class<?> mLinkedList = MyLinkedList.class;
 
         // Check if we have a field named size and its type is int
-        assertEquals("int",mLinkedList.getDeclaredField("size").getType().getName());
+        assertEquals("int", mLinkedList.getDeclaredField("size").getType().getName());
 
         // Check isEmpty()
         assertEquals("isEmpty", mLinkedList.getMethod("isEmpty").getName());
@@ -61,7 +60,7 @@ class SyntaxTest {
     @Test
     @Tag("score:0")
     @DisplayName("Syntax Test for MyDoublyLinkedList")
-    void syntaxTestMyDoublyLinkedList() throws NoSuchMethodException, NoSuchFieldException{
+    void syntaxTestMyDoublyLinkedList() throws NoSuchMethodException, NoSuchFieldException {
 
         Class<?> dList = MyDoublyLinkedList.class;
 
@@ -69,18 +68,18 @@ class SyntaxTest {
         assertEquals(MyLinkedList.class, dList.getSuperclass());
 
         // Check add()
-        assertEquals("add", dList.getMethod("add",Object.class).getName());
-        assertEquals("boolean", dList.getMethod("add",Object.class).getReturnType().getName());
+        assertEquals("add", dList.getMethod("add", Object.class).getName());
+        assertEquals("boolean", dList.getMethod("add", Object.class).getReturnType().getName());
 
         // Check remove()
         assertEquals("remove", dList.getMethod("remove").getName());
         assertEquals(Object.class.getName(), dList.getMethod("remove").getReturnType().getName());
 
         // Check addFirst and addLast
-        assertEquals("addFirst", dList.getMethod("addFirst",Object.class).getName());
-        assertEquals("boolean", dList.getMethod("addFirst",Object.class).getReturnType().getName());
-        assertEquals("addLast", dList.getMethod("addLast",Object.class).getName());
-        assertEquals("boolean", dList.getMethod("addLast",Object.class).getReturnType().getName());
+        assertEquals("addFirst", dList.getMethod("addFirst", Object.class).getName());
+        assertEquals("boolean", dList.getMethod("addFirst", Object.class).getReturnType().getName());
+        assertEquals("addLast", dList.getMethod("addLast", Object.class).getName());
+        assertEquals("boolean", dList.getMethod("addLast", Object.class).getReturnType().getName());
 
         // Check removeFirst and removeLast
         assertEquals("removeFirst", dList.getMethod("removeFirst").getName());
@@ -99,23 +98,23 @@ class SyntaxTest {
         assertEquals("void", dList.getMethod("clear").getReturnType().getName());
 
         // Check equals
-        assertEquals("equals", dList.getMethod("equals",Object.class).getName());
-        assertEquals("boolean", dList.getMethod("equals",Object.class).getReturnType().getName());
+        assertEquals("equals", dList.getMethod("equals", Object.class).getName());
+        assertEquals("boolean", dList.getMethod("equals", Object.class).getReturnType().getName());
 
     }
 
     @Test
     @Tag("score:0")
     @DisplayName("Syntax Test for MyStack")
-    void syntaxTestMyStack() throws NoSuchMethodException, NoSuchFieldException{
+    void syntaxTestMyStack() throws NoSuchMethodException, NoSuchFieldException {
         Class<?> stack = MyStack.class;
 
         // the name of the private field is not given
         // a constructor with no inputs shall be created by default
 
         // check push
-        assertEquals("push", stack.getMethod("push",Object.class).getName());
-        assertEquals("boolean", stack.getMethod("push",Object.class).getReturnType().getName());
+        assertEquals("push", stack.getMethod("push", Object.class).getName());
+        assertEquals("boolean", stack.getMethod("push", Object.class).getReturnType().getName());
 
         // check pop
         assertEquals("pop", stack.getMethod("pop").getName());
@@ -142,13 +141,13 @@ class SyntaxTest {
     @Test
     @Tag("score:0")
     @DisplayName("Syntax Test for MyQueue")
-    void syntaxTestMyQueue() throws NoSuchMethodException, NoSuchFieldException{
+    void syntaxTestMyQueue() throws NoSuchMethodException, NoSuchFieldException {
         Class<?> queue = MyQueue.class;
 
         // check field
         boolean found = false;
-        for(Field f : queue.getDeclaredFields()){
-            if(f.getType().equals(MyDoublyLinkedList.class)){
+        for (Field f : queue.getDeclaredFields()) {
+            if (f.getType().equals(MyDoublyLinkedList.class)) {
                 found = true;
                 break;
             }
@@ -156,8 +155,8 @@ class SyntaxTest {
         assertTrue(found);
 
         // check enqueue
-        assertEquals("enqueue", queue.getMethod("enqueue",Object.class).getName());
-        assertEquals("boolean", queue.getMethod("enqueue",Object.class).getReturnType().getName());
+        assertEquals("enqueue", queue.getMethod("enqueue", Object.class).getName());
+        assertEquals("boolean", queue.getMethod("enqueue", Object.class).getReturnType().getName());
 
         // check dequeue
         assertEquals("dequeue", queue.getMethod("dequeue").getName());
@@ -172,18 +171,18 @@ class SyntaxTest {
         assertEquals("void", queue.getMethod("clear").getReturnType().getName());
 
         // Check equals
-        assertEquals("equals", queue.getMethod("equals",Object.class).getName());
-        assertEquals("boolean", queue.getMethod("equals",Object.class).getReturnType().getName());
+        assertEquals("equals", queue.getMethod("equals", Object.class).getName());
+        assertEquals("boolean", queue.getMethod("equals", Object.class).getReturnType().getName());
 
     }
 
     @Test
     @Tag("score:0")
     @DisplayName("Syntax Test for Position")
-    void syntaxTestPosition() throws NoSuchMethodException, NoSuchFieldException{
+    void syntaxTestPosition() throws NoSuchMethodException, NoSuchFieldException {
         Class<Position> position = Position.class;
         // check constructors
-        assertEquals(Position.class.getName(), position.getConstructor(int.class,int.class).getName());
+        assertEquals(Position.class.getName(), position.getConstructor(int.class, int.class).getName());
         assertEquals(Position.class.getName(), position.getConstructor(Position.class).getName());
 
         // Check reset(int,int)
@@ -221,8 +220,8 @@ class SyntaxTest {
         assertEquals("void", position.getMethod("moveSouth").getReturnType().getName());
 
         // Check equals
-        assertEquals("equals", position.getMethod("equals",Object.class).getName());
-        assertEquals("boolean", position.getMethod("equals",Object.class).getReturnType().getName());
+        assertEquals("equals", position.getMethod("equals", Object.class).getName());
+        assertEquals("boolean", position.getMethod("equals", Object.class).getReturnType().getName());
 
     }
 
@@ -234,7 +233,7 @@ class SyntaxTest {
         Class<TargetQueue> tq = TargetQueue.class;
 
         // Check if TargetQueue extends MyQueue
-        assertEquals(MyQueue.class,tq.getSuperclass());
+        assertEquals(MyQueue.class, tq.getSuperclass());
 
         // check field
         boolean found = false;
@@ -255,7 +254,6 @@ class SyntaxTest {
         assertEquals("void", tq.getMethod("addTargets", String.class).getReturnType().getName());
     }
 
-
     @Test
     @Tag("score:0")
     @DisplayName("Syntax Test for Direction")
@@ -266,7 +264,6 @@ class SyntaxTest {
         assertEquals("EAST", Direction.EAST.toString());
     }
 
-
     @Test
     @Tag("score:0")
     @DisplayName("Syntax Test for ActionQueue")
@@ -275,7 +272,7 @@ class SyntaxTest {
         Class<ActionQueue> aq = ActionQueue.class;
 
         // Check if ActionQueue extends MyQueue
-        assertEquals(MyQueue.class,aq.getSuperclass());
+        assertEquals(MyQueue.class, aq.getSuperclass());
 
         // Check clear
         assertEquals("clear", aq.getMethod("clear").getName());
@@ -287,15 +284,15 @@ class SyntaxTest {
 
     }
 
-
     @Test
     @Tag("score:0")
     @DisplayName("Syntax Test for Region")
-    void syntaxTestRegion() throws NoSuchMethodException, NoSuchFieldException{
+    void syntaxTestRegion() throws NoSuchMethodException, NoSuchFieldException {
         Class<Region> region = Region.class;
 
         // check constructor for region
-        assertEquals(Region.class.getName(), region.getConstructor(int.class,int.class,int.class,int.class).getName());
+        assertEquals(Region.class.getName(),
+                region.getConstructor(int.class, int.class, int.class, int.class).getName());
 
         // Check contains
         assertEquals("contains", region.getMethod("contains", Position.class).getName());
@@ -306,11 +303,11 @@ class SyntaxTest {
     @Test
     @Tag("score:0")
     @DisplayName("Syntax Test for Caterpillar")
-    void syntaxTestCaterpillar() throws NoSuchMethodException, NoSuchFieldException{
+    void syntaxTestCaterpillar() throws NoSuchMethodException, NoSuchFieldException {
         Class<Caterpillar> caterpillar = Caterpillar.class;
 
         // Check if Caterpillar extends MyDoublyLinkedList
-        assertEquals(MyDoublyLinkedList.class,caterpillar.getSuperclass());
+        assertEquals(MyDoublyLinkedList.class, caterpillar.getSuperclass());
 
         // Check getHead
         assertEquals("getHead", caterpillar.getMethod("getHead").getName());
@@ -348,7 +345,6 @@ class SyntaxTest {
     void syntaxTestWorld() throws NoSuchMethodException, NoSuchFieldException {
         Class<World> world = World.class;
 
-
         // check all 6 fields are present
         boolean foundCaterpillar = false;
         boolean foundPosition = false;
@@ -374,7 +370,8 @@ class SyntaxTest {
                 continue;
             }
         }
-        assertTrue(foundCaterpillar && foundPosition && foundActionQueue && foundTargetQueue && foundRegion && foundGameState);
+        assertTrue(foundCaterpillar && foundPosition && foundActionQueue && foundTargetQueue && foundRegion
+                && foundGameState);
 
         // check constructor for world
         assertEquals(World.class.getName(), world.getConstructor(TargetQueue.class, ActionQueue.class).getName());
@@ -414,7 +411,7 @@ class Part1Test {
         list.add(2);
         list.addFirst(5);
         list.addFirst(9);
-        list.addFirst(0);  // {0, 9, 5, 2}
+        list.addFirst(0); // {0, 9, 5, 2}
 
         assertEquals(4, list.getSize());
         assertEquals(0, list.peekFirst());
@@ -424,7 +421,7 @@ class Part1Test {
         list.add(2);
         list.add(5);
         list.addLast(9);
-        list.addFirst(0);  // {0, 2, 5, 9}
+        list.addFirst(0); // {0, 2, 5, 9}
 
         assertEquals(4, list.getSize());
         assertEquals(0, list.peekFirst());
@@ -441,7 +438,7 @@ class Part1Test {
         list.add(2);
         list.add(3);
 
-        Number removedItem = list.removeFirst();  // {2, 3}
+        Number removedItem = list.removeFirst(); // {2, 3}
 
         assertEquals(1, removedItem);
         assertEquals(2, list.peekFirst());
@@ -452,7 +449,7 @@ class Part1Test {
         list.add(2);
         list.add(3);
         list.addFirst(4);
-        list.addFirst(5);  // {5, 4, 1, 2, 3}
+        list.addFirst(5); // {5, 4, 1, 2, 3}
 
         removedItem = list.removeLast();
 
@@ -496,7 +493,7 @@ class Part1Test {
 
         list.clear();
 
-        Iterator i = list.iterator() ;
+        Iterator i = list.iterator();
         assertEquals(0, list.getSize());
         assertFalse(i.hasNext());
     }
@@ -671,7 +668,7 @@ class Part2Test {
     @Test
     @Tag("score:1")
     @DisplayName("Position getDistance() test")
-    void  positionGetDistance() {
+    void positionGetDistance() {
         Position pos = new Position(7, 5);
         Position pos2 = new Position(0, 5);
 
@@ -694,12 +691,11 @@ class Part2Test {
         assertTrue(pos.equals(pos2));
     }
 
-
     // ==================== TARGETQUEUE CLASS TEST =================== //
     @Test
     @Tag("score:1")
     @DisplayName("TargetQueue addTargets() test1")
-    void  tqAddTargets1() {
+    void tqAddTargets1() {
         TargetQueue test = new TargetQueue();
         assertTrue(test.isEmpty());
 
@@ -713,7 +709,7 @@ class Part2Test {
     @Test
     @Tag("score:2")
     @DisplayName("TargetQueue addTargets() test2")
-    void  tqAddTargets2() {
+    void tqAddTargets2() {
         TargetQueue test = new TargetQueue();
 
         test.addTargets("(7,5).(0,5).(2,3)");
@@ -733,7 +729,7 @@ class Part2Test {
     @Test
     @Tag("score:1")
     @DisplayName("TargetQueue addTargets() test3")
-    void  tqAddTargets3() {
+    void tqAddTargets3() {
         TargetQueue test = new TargetQueue();
 
         assertThrows(IllegalArgumentException.class,
@@ -743,7 +739,7 @@ class Part2Test {
     @Test
     @Tag("score:1")
     @DisplayName("TargetQueue addTargets() test4")
-    void  tqAddTargets4() {
+    void tqAddTargets4() {
         TargetQueue test = new TargetQueue();
 
         assertThrows(IllegalArgumentException.class,
@@ -753,7 +749,7 @@ class Part2Test {
     @Test
     @Tag("score:1")
     @DisplayName("TargetQueue clear() test")
-    void  tqClear() {
+    void tqClear() {
         TargetQueue test = new TargetQueue();
 
         test.addTargets("(7,5)");
@@ -767,7 +763,7 @@ class Part2Test {
     @Test
     @Tag("score:1")
     @DisplayName("ActionQueue loadFromEncodedString() test1")
-    void  aqLoadFromEncodedString1() {
+    void aqLoadFromEncodedString1() {
         ActionQueue test = new ActionQueue();
 
         test.loadFromEncodedString("3[E]"); // {East, East, East}
@@ -779,12 +775,12 @@ class Part2Test {
     @Test
     @Tag("score:1")
     @DisplayName("ActionQueue loadFromEncodedString() test2")
-    void  aqLoadFromEncodedString2() {
+    void aqLoadFromEncodedString2() {
         ActionQueue test = new ActionQueue();
 
         test.loadFromEncodedString("3[N]2[S]1[W]"); // { North, North, North, South, South, West }
         for (int i = 0; i < 6; i++) {
-            if (i < 3){
+            if (i < 3) {
                 assertEquals(Direction.NORTH, test.dequeue());
             } else if (i < 5) {
                 assertEquals(Direction.SOUTH, test.dequeue());
@@ -797,7 +793,7 @@ class Part2Test {
     @Test
     @Tag("score:1")
     @DisplayName("ActionQueue loadFromEncodedString() test3")
-    void  aqLoadFromEncodedString3() {
+    void aqLoadFromEncodedString3() {
         ActionQueue test = new ActionQueue();
 
         test.loadFromEncodedString("3[SW]");
@@ -812,7 +808,7 @@ class Part2Test {
     @Test
     @Tag("score:1")
     @DisplayName("ActionQueue loadFromEncodedString() test4")
-    void  aqLoadFromEncodedString4() {
+    void aqLoadFromEncodedString4() {
         ActionQueue test = new ActionQueue();
 
         assertThrows(IllegalArgumentException.class,
@@ -822,7 +818,7 @@ class Part2Test {
     @Test
     @Tag("score:1")
     @DisplayName("ActionQueue clear() test")
-    void  aqClear() {
+    void aqClear() {
         ActionQueue test = new ActionQueue();
 
         test.loadFromEncodedString("3[E]");
@@ -840,8 +836,8 @@ class Part3Test {
     @Tag("score:1")
     @DisplayName("Region contains() test1")
     void regionContainsTest1() {
-        Region region = new Region(0,0,5,5);
-        Position goodPos = new Position(2,4);
+        Region region = new Region(0, 0, 5, 5);
+        Position goodPos = new Position(2, 4);
         assertTrue(region.contains(goodPos));
     }
 
@@ -887,7 +883,7 @@ class Part3Test {
     @Tag("score:1")
     @DisplayName("Caterpillar selfCollision() test1")
     void caterpillarSelfCollision1() {
-        Caterpillar caterpillar = new Caterpillar();        
+        Caterpillar caterpillar = new Caterpillar();
         assertFalse(caterpillar.selfCollision(new Position(7, 9)));
     }
 
@@ -927,7 +923,7 @@ class Part3Test {
 
         World world = new World(targetQueue, actionQueue);
 
-        world.step();  // move 1 step N from (7,7) to (7,8)
+        world.step(); // move 1 step N from (7,7) to (7,8)
 
         assertEquals(GameState.MOVE, world.getState());
         assertEquals(1, world.getCaterpillar().getSize());
@@ -948,14 +944,15 @@ class Part3Test {
         targetQueue.addTargets(food);
         World world = new World(targetQueue, actionQueue);
 
-        //move 9 steps E, wall collision
-        for (int i = 0; i < 9; i++) {  // move 9 steps E from (7,7) to (15,7)
+        // move 9 steps E, wall collision
+        for (int i = 0; i < 9; i++) { // move 9 steps E from (7,7) to (15,7)
             world.step();
         }
 
         assertEquals(GameState.WALL_COLLISION, world.getState());
         assertEquals(new Position(15, 7), world.getCaterpillar().getHead());
     }
+
     @Test
     @Tag("score:2")
     @DisplayName("World step() test3")
@@ -964,14 +961,14 @@ class Part3Test {
         ActionQueue actionQueue = new ActionQueue();
 
         String food = "(9,9).(14,7).(7,10)";
-        String direction = "2[S]2[E]" ;
+        String direction = "2[S]2[E]";
 
         targetQueue.addTargets(food);
         actionQueue.loadFromEncodedString(direction);
 
         World world = new World(targetQueue, actionQueue);
 
-        for (int i = 0; i < 4; i++) {  // move 4 steps S from (7,7) to (7,3)
+        for (int i = 0; i < 4; i++) { // move 4 steps S from (7,7) to (7,3)
             world.step();
         }
 
@@ -991,7 +988,7 @@ class Part3Test {
         ActionQueue actionQueue = new ActionQueue();
 
         String str_target_pos = "(9,9)";
-        String str_encoded = "2[E]" ;
+        String str_encoded = "2[E]";
 
         actionQueue.loadFromEncodedString(str_encoded);
         targetQueue.addTargets(str_target_pos);
@@ -999,14 +996,15 @@ class Part3Test {
         World world = new World(targetQueue, actionQueue);
 
         GameState state = GameState.MOVE;
-        assertEquals(world.getState(),state);
+        assertEquals(world.getState(), state);
 
         Caterpillar caterpillar = new Caterpillar();
         assertEquals(world.getCaterpillar(), caterpillar);
 
-        Position pos = new Position(9,9);
+        Position pos = new Position(9, 9);
         assertEquals(world.getFood(), pos);
     }
+
     @Test
     @Tag("score:1")
     @DisplayName("World isRunning() test1")

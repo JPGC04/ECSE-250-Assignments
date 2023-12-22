@@ -3,11 +3,10 @@ package assignment2;
 import java.util.Iterator;
 import java.util.NoSuchElementException;
 
-public class MyDoublyLinkedList<E> extends MyLinkedList<E> { 
+public class MyDoublyLinkedList<E> extends MyLinkedList<E> {
 
 	private DNode head;
 	private DNode tail;
-	
 
 	public boolean add(E e) {
 		if (e == null) {
@@ -38,6 +37,7 @@ public class MyDoublyLinkedList<E> extends MyLinkedList<E> {
 		this.size++;
 		return true;
 	}
+
 	public E remove() {
 		if (this.isEmpty()) {
 			throw new NoSuchElementException();
@@ -56,6 +56,7 @@ public class MyDoublyLinkedList<E> extends MyLinkedList<E> {
 		this.size--;
 		return tailElement;
 	}
+
 	public boolean addFirst(E e) {
 		if (e == null) {
 			return false;
@@ -87,9 +88,11 @@ public class MyDoublyLinkedList<E> extends MyLinkedList<E> {
 		this.size++;
 		return true;
 	}
+
 	public boolean addLast(E e) {
 		return this.add(e);
 	}
+
 	public E removeFirst() {
 		if (this.isEmpty()) {
 			throw new NoSuchElementException();
@@ -108,29 +111,35 @@ public class MyDoublyLinkedList<E> extends MyLinkedList<E> {
 		this.size--;
 		return headElement;
 	}
+
 	public E removeLast() {
 		return remove();
 	}
+
 	public E peekFirst() {
 		if (this.isEmpty()) {
 			throw new NoSuchElementException();
 		}
 		return this.head.element;
 	}
+
 	public E peekLast() {
 		if (this.isEmpty()) {
 			throw new NoSuchElementException();
 		}
 		return this.tail.element;
 	}
+
 	public void clear() {
 		while (this.getSize() > 0) {
 			this.remove();
 		}
 		this.size = 0;
 	}
+
 	public boolean equals(Object object) {
-		if ((!(object instanceof MyDoublyLinkedList)) || (((MyDoublyLinkedList<?>) object).getSize() != this.getSize())) {
+		if ((!(object instanceof MyDoublyLinkedList))
+				|| (((MyDoublyLinkedList<?>) object).getSize() != this.getSize())) {
 			return false;
 		}
 		Iterator<?> objectIterator = ((MyDoublyLinkedList<?>) object).iterator();
@@ -138,7 +147,8 @@ public class MyDoublyLinkedList<E> extends MyLinkedList<E> {
 		while (thisIterator.hasNext()) {
 			Object nextObject = objectIterator.next();
 			E nextThis = thisIterator.next();
-			if ((nextThis == null && nextObject != null) || (nextThis != null && nextObject == null) || (!(nextObject.equals(nextThis)))) {
+			if ((nextThis == null && nextObject != null) || (nextThis != null && nextObject == null)
+					|| (!(nextObject.equals(nextThis)))) {
 				return false;
 			}
 		}
@@ -150,7 +160,7 @@ public class MyDoublyLinkedList<E> extends MyLinkedList<E> {
 		private DNode next;
 		private DNode prev;
 	}
-	
+
 	public Iterator<E> iterator() {
 		return new DLLIterator();
 	}

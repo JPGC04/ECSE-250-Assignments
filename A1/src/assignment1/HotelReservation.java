@@ -38,6 +38,11 @@ public class HotelReservation extends Reservation {
     }
 
     public boolean equals(Object inputObject) {
-        return ((inputObject instanceof HotelReservation) && (this.reservationName() == ((HotelReservation) inputObject).reservationName()) && (this.hotelName.equals(((HotelReservation) inputObject).hotelName)) && (this.roomType == ((HotelReservation) inputObject).roomType) && (this.getNumOfNights() == ((HotelReservation) inputObject).getNumOfNights()) && (this.getCost() == ((HotelReservation) inputObject).getCost()));
+        return ((inputObject instanceof HotelReservation)
+                && (this.reservationName() == ((HotelReservation) inputObject).reservationName())
+                && (this.hotelName.equals(((HotelReservation) inputObject).hotelName))
+                && (this.roomType == ((HotelReservation) inputObject).roomType)
+                && (this.getNumOfNights() == ((HotelReservation) inputObject).getNumOfNights())
+                && (this.getCost() == ((HotelReservation) inputObject).getCost()));
     }
 }

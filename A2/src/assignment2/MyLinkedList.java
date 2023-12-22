@@ -10,6 +10,7 @@ public abstract class MyLinkedList<E> implements MyList<E> {
     public boolean isEmpty() {
         return this.size == 0;
     }
+
     public int getSize() {
         return this.size;
     }

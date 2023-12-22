@@ -12,6 +12,7 @@ public class Caterpillar extends MyDoublyLinkedList<Position> {
     public Position getHead() {
         return this.peekFirst();
     }
+
     public void eat(Position inputPosition) {
         if (this.selfCollision(inputPosition)) {
             throw new IllegalArgumentException();
@@ -21,6 +22,7 @@ public class Caterpillar extends MyDoublyLinkedList<Position> {
         }
         this.addFirst(inputPosition);
     }
+
     public void move(Position inputPosition) {
         if (this.selfCollision(inputPosition)) {
             throw new IllegalArgumentException();
@@ -32,6 +34,7 @@ public class Caterpillar extends MyDoublyLinkedList<Position> {
             this.removeLast();
         }
     }
+
     public boolean selfCollision(Position inputPosition) {
         Iterator<Position> thisIterator = this.iterator();
         while (thisIterator.hasNext()) {

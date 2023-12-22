@@ -2,7 +2,7 @@ package assignment3;
 
 import java.awt.Color;
 
-public class BlobGoal extends Goal{
+public class BlobGoal extends Goal {
 
 	public BlobGoal(Color c) {
 		super(c);
@@ -30,10 +30,9 @@ public class BlobGoal extends Goal{
 
 	@Override
 	public String description() {
-		return "Create the largest connected blob of " + GameColors.colorToString(targetGoal) 
-		+ " blocks, anywhere within the block";
+		return "Create the largest connected blob of " + GameColors.colorToString(targetGoal)
+				+ " blocks, anywhere within the block";
 	}
-
 
 	public int undiscoveredBlobSize(int i, int j, Color[][] unitCells, boolean[][] visited) {
 		if (visited[i][j] || (!(unitCells[i][j].equals(this.targetGoal)))) {

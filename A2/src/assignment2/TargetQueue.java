@@ -22,7 +22,9 @@ public class TargetQueue extends MyQueue<Position> {
         for (int i = 0; i < inputString.length(); i++) {
             char c = inputString.charAt(i);
             if (c == '(') {
-                if ((!(this.stringStack.isEmpty() && num.length() == 0)) || (i != 0 && (!((inputString.charAt(i - 1)) == '.'))) || (i == inputString.length() - 1) || (!(Character.isDigit(inputString.charAt(i + 1))))) {
+                if ((!(this.stringStack.isEmpty() && num.length() == 0))
+                        || (i != 0 && (!((inputString.charAt(i - 1)) == '.'))) || (i == inputString.length() - 1)
+                        || (!(Character.isDigit(inputString.charAt(i + 1))))) {
                     throw new IllegalArgumentException();
                 }
                 this.stringStack.push("(");
@@ -32,14 +34,18 @@ public class TargetQueue extends MyQueue<Position> {
                 }
                 num += c;
             } else if (c == ',') {
-                if ((i == 0) || (num.length() == 0) || (i == inputString.length() - 1) || (!((Character.isDigit(inputString.charAt(i + 1))) && (Character.isDigit(inputString.charAt(i - 1)))))) {
+                if ((i == 0) || (num.length() == 0) || (i == inputString.length() - 1)
+                        || (!((Character.isDigit(inputString.charAt(i + 1)))
+                                && (Character.isDigit(inputString.charAt(i - 1)))))) {
                     throw new IllegalArgumentException();
                 }
                 this.stringStack.push(num);
                 this.stringStack.push(",");
                 num = "";
             } else if (c == ')') {
-                if ((i == 0) || (!(Character.isDigit(inputString.charAt(i - 1)))) || ((i != inputString.length() - 1) && (inputString.charAt(i + 1) != '.')) || (this.stringStack.getSize() != 3 || num.length() == 0)) {
+                if ((i == 0) || (!(Character.isDigit(inputString.charAt(i - 1))))
+                        || ((i != inputString.length() - 1) && (inputString.charAt(i + 1) != '.'))
+                        || (this.stringStack.getSize() != 3 || num.length() == 0)) {
                     throw new IllegalArgumentException();
                 }
                 String comma = this.stringStack.pop();

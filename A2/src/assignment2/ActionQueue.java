@@ -95,15 +95,20 @@ public class ActionQueue extends MyQueue<Direction> {
                 if ((i == 0 || i == inputString.length() - 1) || (!(Character.isDigit(inputString.charAt(i - 1))))) {
                     throw new IllegalArgumentException();
                 }
-                if (!((inputString.charAt(i + 1) == 'N') || (inputString.charAt(i + 1) == 'S') || (inputString.charAt(i + 1) == 'W') || (inputString.charAt(i + 1) == 'E') || (Character.isDigit(inputString.charAt(i + 1))))) {
+                if (!((inputString.charAt(i + 1) == 'N') || (inputString.charAt(i + 1) == 'S')
+                        || (inputString.charAt(i + 1) == 'W') || (inputString.charAt(i + 1) == 'E')
+                        || (Character.isDigit(inputString.charAt(i + 1))))) {
                     throw new IllegalArgumentException();
                 }
-                if ((inputString.length() != 1) && (i != inputString.length() - 1) && (inputString.charAt(i + 1) == ']')) {
+                if ((inputString.length() != 1) && (i != inputString.length() - 1)
+                        && (inputString.charAt(i + 1) == ']')) {
                     throw new IllegalArgumentException();
                 }
                 left++;
             } else if (c == ']') {
-                if ((i == 0) || (!((inputString.charAt(i - 1) == ']') || (inputString.charAt(i - 1) == 'N') || (inputString.charAt(i - 1) == 'S') || (inputString.charAt(i - 1) == 'W') || (inputString.charAt(i - 1) == 'E')))) {
+                if ((i == 0) || (!((inputString.charAt(i - 1) == ']') || (inputString.charAt(i - 1) == 'N')
+                        || (inputString.charAt(i - 1) == 'S') || (inputString.charAt(i - 1) == 'W')
+                        || (inputString.charAt(i - 1) == 'E')))) {
                     throw new IllegalArgumentException();
                 }
                 if (i != inputString.length() - 1 && inputString.charAt(i + 1) == '[') {
@@ -114,17 +119,23 @@ public class ActionQueue extends MyQueue<Direction> {
                 if (i == inputString.length() - 1) {
                     throw new IllegalArgumentException();
                 }
-                if (!((i != inputString.length() - 1) && (inputString.charAt(i + 1) == '[' || Character.isDigit(inputString.charAt(i + 1))))) {
+                if (!((i != inputString.length() - 1)
+                        && (inputString.charAt(i + 1) == '[' || Character.isDigit(inputString.charAt(i + 1))))) {
                     throw new IllegalArgumentException();
                 }
             } else if (c == 'N' || c == 'S' || c == 'W' || c == 'E') {
                 if (i != 0) {
-                    if (!((inputString.charAt(i - 1) == 'N') || (inputString.charAt(i - 1) == 'S') || (inputString.charAt(i - 1) == 'W') || (inputString.charAt(i - 1) == 'E') || (inputString.charAt(i - 1) == '[') || (inputString.charAt(i - 1) == ']') || (Character.isDigit(inputString.charAt(i + 1))))) {
+                    if (!((inputString.charAt(i - 1) == 'N') || (inputString.charAt(i - 1) == 'S')
+                            || (inputString.charAt(i - 1) == 'W') || (inputString.charAt(i - 1) == 'E')
+                            || (inputString.charAt(i - 1) == '[') || (inputString.charAt(i - 1) == ']')
+                            || (Character.isDigit(inputString.charAt(i + 1))))) {
                         throw new IllegalArgumentException();
                     }
                 }
                 if (i != inputString.length() - 1) {
-                    if (!((inputString.charAt(i + 1) == 'N') || (inputString.charAt(i + 1) == 'S') || (inputString.charAt(i + 1) == 'W') || (inputString.charAt(i + 1) == 'E') || (inputString.charAt(i + 1) == ']') || (Character.isDigit(inputString.charAt(i + 1))))) {
+                    if (!((inputString.charAt(i + 1) == 'N') || (inputString.charAt(i + 1) == 'S')
+                            || (inputString.charAt(i + 1) == 'W') || (inputString.charAt(i + 1) == 'E')
+                            || (inputString.charAt(i + 1) == ']') || (Character.isDigit(inputString.charAt(i + 1))))) {
                         throw new IllegalArgumentException();
                     }
                 }

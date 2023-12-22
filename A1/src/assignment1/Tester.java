@@ -1,20 +1,21 @@
 package assignment1;
 
 // To make the tester work, you might need to setUp some import libraries. To do so:
-    // 1: Hover over the red text saying junit (or other libraries that are red)
-    // 2: click add to classpath or import statement (depends on the IDE)
+// 1: Hover over the red text saying junit (or other libraries that are red)
+// 2: click add to classpath or import statement (depends on the IDE)
 import org.junit.jupiter.api.*;
 import static org.junit.jupiter.api.Assertions.*;
 import java.lang.reflect.Field;
 import java.util.Arrays;
 
-
-public class Tester {}
+public class Tester {
+}
 
 class AirportTest { // 2 points
 
     @Test
-    @Tag("score:1") @DisplayName("Airport getFees() Test1")
+    @Tag("score:1")
+    @DisplayName("Airport getFees() Test1")
     void getFees_Test1() {
         Airport a = new Airport(200, 100, 50);
         assertEquals(50, a.getFees(),
@@ -22,7 +23,8 @@ class AirportTest { // 2 points
     }
 
     @Test
-    @Tag("score:1") @DisplayName("Airport getDistance() Test1")
+    @Tag("score:1")
+    @DisplayName("Airport getDistance() Test1")
     void getDistance_Test1() {
         Airport a = new Airport(44, 120, 100);
         Airport b = new Airport(50, 112, 100);
@@ -31,10 +33,11 @@ class AirportTest { // 2 points
     }
 }
 
-class RoomTest {    // 6 points
+class RoomTest { // 6 points
 
     @Test
-    @Tag("score:1") @DisplayName("Room Constructor Test1")
+    @Tag("score:1")
+    @DisplayName("Room Constructor Test1")
     void roomConstructor_Test1() {
         Room room = new Room("double");
         assertEquals("double", room.getType(),
@@ -57,14 +60,16 @@ class RoomTest {    // 6 points
     }
 
     @Test
-    @Tag("score:1") @DisplayName("Room Constructor Test4")
+    @Tag("score:1")
+    @DisplayName("Room Constructor Test4")
     void roomConstructor_Test4() {
         assertThrows(IllegalArgumentException.class, () -> new Room("twin"),
                 "Room: constructor did not throw an exception for an invalid room type");
     }
 
     @Test
-    @Tag("score:1") @DisplayName("Room Copy Constructor Test1")
+    @Tag("score:1")
+    @DisplayName("Room Copy Constructor Test1")
     void copyConstructor_Test1() {
         Room room = new Room("double");
         Room copyRoom = new Room(room);
@@ -80,26 +85,29 @@ class RoomTest {    // 6 points
     }
 
     @Test
-    @Tag("score:1") @DisplayName("Room findAvailableRoom() Test1")
+    @Tag("score:1")
+    @DisplayName("Room findAvailableRoom() Test1")
     void findAvailableRoom_Test1() {
-        Room[] rooms = {new Room("king"), new Room("queen"), new Room("double")};
+        Room[] rooms = { new Room("king"), new Room("queen"), new Room("double") };
         assertEquals(rooms[1], Room.findAvailableRoom(rooms, "queen"),
                 "Room: findAvailableRoom() did not return the correct room");
     }
 
     @Test
-    @Tag("score:1") @DisplayName("Room makeRoomAvailable() Test1")
+    @Tag("score:1")
+    @DisplayName("Room makeRoomAvailable() Test1")
     void makeRoomAvailable_Test1() {
-        Room[] rooms = {new Room("double"), new Room("king"), new Room("queen")};
+        Room[] rooms = { new Room("double"), new Room("king"), new Room("queen") };
         assertFalse(Room.makeRoomAvailable(rooms, "king"),
-                "Room: makeRoomAvailable() did not return the correct value"  );
+                "Room: makeRoomAvailable() did not return the correct value");
     }
 
     @Test
-    @Tag("score:1") @DisplayName("Room changeAvailability Test1")
+    @Tag("score:1")
+    @DisplayName("Room changeAvailability Test1")
     void changeAvailability_Test1() {
         Room room = new Room("double");
-        Room[] rooms = {room};
+        Room[] rooms = { room };
         room.changeAvailability();
         assertTrue(Room.makeRoomAvailable(rooms, "double"),
                 "Room: changeAvailability() did not change the availability of the room");
@@ -107,11 +115,12 @@ class RoomTest {    // 6 points
     }
 }
 
-class HotelTest {       // 7 points
+class HotelTest { // 7 points
     @Test
-    @Tag("score:2") @DisplayName("Hotel Constructor Test1")
-    void deepCopyConstructor_Test1 () throws IllegalAccessException {
-        Room[] rooms = {new Room("double"), new Room("queen"), new Room("king")};
+    @Tag("score:2")
+    @DisplayName("Hotel Constructor Test1")
+    void deepCopyConstructor_Test1() throws IllegalAccessException {
+        Room[] rooms = { new Room("double"), new Room("queen"), new Room("king") };
         Hotel hotel = new Hotel("Hotel1", rooms);
 
         Room[] roomsCopy = new Room[rooms.length];
@@ -133,28 +142,32 @@ class HotelTest {       // 7 points
         assertEquals("Hotel1", name,
                 "Hotel: Constructor did not set the name correctly");
     }
+
     @Test
-    @Tag ("score:2") @DisplayName("Hotel reserveRoom() Test1")
+    @Tag("score:2")
+    @DisplayName("Hotel reserveRoom() Test1")
     void reserveRoom_Test1() {
-        Room[] rooms = {new Room("double")};
+        Room[] rooms = { new Room("double") };
         Hotel hotel1 = new Hotel("Hotel1", rooms);
         assertEquals(9000, hotel1.reserveRoom("double"),
                 "Hotel: reserveRoom() did not return the correct price of the room after reserving it");
     }
 
     @Test
-    @Tag ("score:1") @DisplayName("Hotel reserveRoom() Test2")
+    @Tag("score:1")
+    @DisplayName("Hotel reserveRoom() Test2")
     void reserveRoom_Test2() {
-        Room[] rooms = {new Room("double")};
+        Room[] rooms = { new Room("double") };
         Hotel hotel1 = new Hotel("Hotel1", rooms);
         assertThrows(IllegalArgumentException.class, () -> hotel1.reserveRoom("king"),
                 "Hotel: reserveRoom() did not throw an exception for an invalid room type");
     }
 
     @Test
-    @Tag ("score:1") @DisplayName("Hotel cancelRoom() Test1")
+    @Tag("score:1")
+    @DisplayName("Hotel cancelRoom() Test1")
     void cancelRoom_Test1() {
-        Room[] rooms = {new Room("double")};
+        Room[] rooms = { new Room("double") };
         Hotel hotel1 = new Hotel("Hotel1", rooms);
         hotel1.reserveRoom("double");
         assertTrue(hotel1.cancelRoom("double"),
@@ -162,18 +175,20 @@ class HotelTest {       // 7 points
     }
 
     @Test
-    @Tag ("score:1") @DisplayName("Hotel cancelRoom() Test2")
+    @Tag("score:1")
+    @DisplayName("Hotel cancelRoom() Test2")
     void cancelRoom_Test2() {
-        Room[] rooms = {new Room("double")};
+        Room[] rooms = { new Room("double") };
         Hotel hotel1 = new Hotel("Hotel1", rooms);
         assertFalse(hotel1.cancelRoom("king"),
                 "Hotel: cancelRoom() did not return the correct value");
     }
 }
 
-class CustomerTest {    // 7 points
+class CustomerTest { // 7 points
     @Test
-    @Tag("score:1") @DisplayName("Customer Constructor Test1")
+    @Tag("score:1")
+    @DisplayName("Customer Constructor Test1")
     void customerConstructor_Test1() {
         Customer customer = new Customer("bob", 100);
         assertEquals("bob", customer.getName(),
@@ -185,7 +200,8 @@ class CustomerTest {    // 7 points
     }
 
     @Test
-    @Tag("score:1") @DisplayName("Customer addFunds() Test1")
+    @Tag("score:1")
+    @DisplayName("Customer addFunds() Test1")
     void addFunds_Test1() {
         Customer customer = new Customer("bob", 100);
         assertEquals(101, customer.addFunds(1),
@@ -195,10 +211,11 @@ class CustomerTest {    // 7 points
     }
 
     @Test
-    @Tag("score:1") @DisplayName("Customer addToBasket(Reservation) Test1")
+    @Tag("score:1")
+    @DisplayName("Customer addToBasket(Reservation) Test1")
     void addToBasket_Test1_Reservation() {
         Customer customer = new Customer("bob", 100);
-        Room[] rooms = {new Room("double")};
+        Room[] rooms = { new Room("double") };
         Hotel hotel = new Hotel("barcelo", rooms);
         HotelReservation reservation = new HotelReservation("bob", hotel, "double", 2);
 
@@ -206,12 +223,12 @@ class CustomerTest {    // 7 points
                 "Customer: addToBasket(Reservation) did not return the correct number of reservations in the basket");
     }
 
-
     @Test
-    @Tag("score:1") @DisplayName("Customer addToBasket(HotelReservation) Test3")
+    @Tag("score:1")
+    @DisplayName("Customer addToBasket(HotelReservation) Test3")
     void addToBasket_Test3_Reservation() {
         Customer customer = new Customer("bob", 100);
-        Room[] rooms = {new Room("double")};
+        Room[] rooms = { new Room("double") };
         Hotel hotel = new Hotel("barcelo", rooms);
 
         assertEquals(1, customer.addToBasket(hotel, "double", 2, false),
@@ -219,7 +236,8 @@ class CustomerTest {    // 7 points
     }
 
     @Test
-    @Tag("score:1") @DisplayName("Customer addToBasket(FlightReservation) Test4")
+    @Tag("score:1")
+    @DisplayName("Customer addToBasket(FlightReservation) Test4")
     void addToBasket_Test4_Reservation() {
         Customer customer = new Customer("bob", 100);
         Airport airport1 = new Airport(100, 200, 1000);
@@ -230,11 +248,12 @@ class CustomerTest {    // 7 points
     }
 
     @Test
-    @Tag("score:1") @DisplayName("Customer removeFromBasket(Reservation) Test1")
+    @Tag("score:1")
+    @DisplayName("Customer removeFromBasket(Reservation) Test1")
     void removeFromBasket_Test1() {
         Customer customer = new Customer("bob", 100);
 
-        Room[] rooms = {new Room("double")};
+        Room[] rooms = { new Room("double") };
         Hotel hotel = new Hotel("barcelo", rooms);
         Reservation reservation = new HotelReservation("bob", hotel, "double", 2);
         customer.addToBasket(reservation);
@@ -244,11 +263,12 @@ class CustomerTest {    // 7 points
     }
 
     @Test
-    @Tag("score:1") @DisplayName("Customer checkOut() Test1")
+    @Tag("score:1")
+    @DisplayName("Customer checkOut() Test1")
     void checkout_Tes1() {
         Customer customer = new Customer("bob", 100000);
 
-        Room[] rooms = {new Room("double")};
+        Room[] rooms = { new Room("double") };
         Hotel hotel = new Hotel("barcelo", rooms);
         HotelReservation reservation = new HotelReservation("bob", hotel, "double", 2);
         customer.addToBasket(reservation);
@@ -258,14 +278,16 @@ class CustomerTest {    // 7 points
     }
 }
 
-class ReservationTest {     // 2 points
+class ReservationTest { // 2 points
     @Test
-    @Tag("score:2") @DisplayName("Reservation reservationName() Test1")
+    @Tag("score:2")
+    @DisplayName("Reservation reservationName() Test1")
     void reservationName() {
         Reservation fakeReservation = new ReservationTest.FakeReservation("Alex");
         assertEquals("Alex", fakeReservation.reservationName(),
                 "Reservation: reservationName() returns the wrong name.");
     }
+
     private static class FakeReservation extends Reservation {
 
         public FakeReservation(String name) {
@@ -284,12 +306,13 @@ class ReservationTest {     // 2 points
     }
 }
 
-class HotelReservationTest {    // 4 points
+class HotelReservationTest { // 4 points
 
     @Test
-    @Tag("score:1") @DisplayName("HotelReservation getNumOfNights() Test1")
+    @Tag("score:1")
+    @DisplayName("HotelReservation getNumOfNights() Test1")
     void getNumOfNights() {
-        Room[] rooms = {new Room("double")};
+        Room[] rooms = { new Room("double") };
         Hotel hotel1 = new Hotel("Hotel1", rooms);
         HotelReservation hotelReservation1 = new HotelReservation("Alex", hotel1, "double", 2);
         assertEquals(2, hotelReservation1.getNumOfNights(),
@@ -297,9 +320,10 @@ class HotelReservationTest {    // 4 points
     }
 
     @Test
-    @Tag("score:1") @DisplayName("HotelReservation getCost() Test1")
+    @Tag("score:1")
+    @DisplayName("HotelReservation getCost() Test1")
     void getCost() {
-        Room[] rooms = {new Room("double")};
+        Room[] rooms = { new Room("double") };
         Hotel hotel1 = new Hotel("Hotel1", rooms);
         HotelReservation hotelReservation1 = new HotelReservation("Alex", hotel1, "double", 2);
         assertEquals(18000, hotelReservation1.getCost(),
@@ -307,9 +331,10 @@ class HotelReservationTest {    // 4 points
     }
 
     @Test
-    @Tag("score:1") @DisplayName("HotelReservation equals() Test1")
+    @Tag("score:1")
+    @DisplayName("HotelReservation equals() Test1")
     void testEquals1() {
-        Room[] rooms = {new Room("double")};
+        Room[] rooms = { new Room("double") };
         Hotel hotel1 = new Hotel("Hotel1", rooms);
         HotelReservation hotelReservation1 = new HotelReservation("Alex", hotel1, "double", 2);
         HotelReservation hotelReservation2 = hotelReservation1;
@@ -319,9 +344,10 @@ class HotelReservationTest {    // 4 points
     }
 
     @Test
-    @Tag("score:1") @DisplayName("HotelReservation equals() Test2")
+    @Tag("score:1")
+    @DisplayName("HotelReservation equals() Test2")
     void testEquals2() {
-        Room[] rooms = {new Room("double"), new Room("king")};
+        Room[] rooms = { new Room("double"), new Room("king") };
         Hotel hotel1 = new Hotel("Hotel1", rooms);
         HotelReservation hotelReservation1 = new HotelReservation("Alex", hotel1, "double", 2);
         HotelReservation hotelReservation2 = new HotelReservation("Bob", hotel1, "king", 1);
@@ -329,10 +355,11 @@ class HotelReservationTest {    // 4 points
     }
 }
 
-class FlightReservationTest {   // 3 points
+class FlightReservationTest { // 3 points
 
     @Test
-    @Tag("score:1") @DisplayName("FlightReservation getCost() Test1")
+    @Tag("score:1")
+    @DisplayName("FlightReservation getCost() Test1")
     void getCost() {
         Airport airport1 = new Airport(44, 120, 100);
         Airport airport2 = new Airport(50, 112, 110);
@@ -342,7 +369,8 @@ class FlightReservationTest {   // 3 points
     }
 
     @Test
-    @Tag("score:1") @DisplayName("FlightReservation equals() Test1")
+    @Tag("score:1")
+    @DisplayName("FlightReservation equals() Test1")
     void testEquals1() {
         Airport airport1 = new Airport(44, 120, 100);
         Airport airport2 = new Airport(50, 112, 110);
@@ -355,7 +383,8 @@ class FlightReservationTest {   // 3 points
     }
 
     @Test
-    @Tag("score:1") @DisplayName("FlightReservation equals() Test2")
+    @Tag("score:1")
+    @DisplayName("FlightReservation equals() Test2")
     void testEquals2() {
         Airport airport1 = new Airport(44, 120, 100);
         Airport airport2 = new Airport(50, 112, 110);
@@ -368,11 +397,12 @@ class FlightReservationTest {   // 3 points
     }
 }
 
-class BnBReservationTest {      // 2 points
+class BnBReservationTest { // 2 points
     @Test
-    @Tag("score:1") @DisplayName("BnBReservation reservationName() Test1")
+    @Tag("score:1")
+    @DisplayName("BnBReservation reservationName() Test1")
     void reservationName() {
-        Room[] rooms = {new Room("double")};
+        Room[] rooms = { new Room("double") };
         Hotel hotel1 = new Hotel("Hotel1", rooms);
 
         BnBReservation bnBReservation = new BnBReservation("Alex", hotel1, "double", 2);
@@ -381,9 +411,10 @@ class BnBReservationTest {      // 2 points
     }
 
     @Test
-    @Tag("score:1") @DisplayName("BnBReservation getCost() Test1")
+    @Tag("score:1")
+    @DisplayName("BnBReservation getCost() Test1")
     void getCost() {
-        Room[] rooms = {new Room("double")};
+        Room[] rooms = { new Room("double") };
         Hotel hotel1 = new Hotel("Hotel1", rooms);
 
         BnBReservation bnBReservation = new BnBReservation("Alex", hotel1, "double", 2);
@@ -392,11 +423,11 @@ class BnBReservationTest {      // 2 points
     }
 }
 
-
-class BasketTest {      // 7 points
+class BasketTest { // 7 points
 
     @Test
-    @Tag("score:1") @DisplayName("Basket add() Test1")
+    @Tag("score:1")
+    @DisplayName("Basket add() Test1")
     void addTest1() {
         Basket basket = new Basket();
         Reservation reservation1 = new BasketTest.FakeReservation("Alex");
@@ -410,16 +441,19 @@ class BasketTest {      // 7 points
     }
 
     @Test
-    @Tag("score:2") @DisplayName("Basket getProducts() Test1")
+    @Tag("score:2")
+    @DisplayName("Basket getProducts() Test1")
     void getProducts2() {
         Basket basket = new Basket();
-        HotelReservation hotelReservation1 = new HotelReservation("Alex", new Hotel("Hotel1", new Room[]{new Room("double")}), "double", 2);
-        FlightReservation flightReservation1 = new FlightReservation("Bob", new Airport(44, 120, 100), new Airport(50, 112, 110));
+        HotelReservation hotelReservation1 = new HotelReservation("Alex",
+                new Hotel("Hotel1", new Room[] { new Room("double") }), "double", 2);
+        FlightReservation flightReservation1 = new FlightReservation("Bob", new Airport(44, 120, 100),
+                new Airport(50, 112, 110));
 
         basket.add(hotelReservation1);
         basket.add(flightReservation1);
 
-        Reservation[] expected = {hotelReservation1, flightReservation1};
+        Reservation[] expected = { hotelReservation1, flightReservation1 };
         Reservation[] output = basket.getProducts();
 
         for (int i = 0; i < expected.length; i++) {
@@ -429,7 +463,8 @@ class BasketTest {      // 7 points
     }
 
     @Test
-    @Tag("score:1") @DisplayName("Basket getNumOfReservations Test1")
+    @Tag("score:1")
+    @DisplayName("Basket getNumOfReservations Test1")
     void getNumOfReservations() {
         Basket basket1 = new Basket();
         Reservation reservation1 = new BasketTest.FakeReservation("Alex");
@@ -442,9 +477,9 @@ class BasketTest {      // 7 points
                 "Basket: getNumOfReservations() returns the wrong number of reservations");
     }
 
-
     @Test
-    @Tag("score:1") @DisplayName("Basket remove() Test1")
+    @Tag("score:1")
+    @DisplayName("Basket remove() Test1")
     void remove() {
         Basket basket1 = new Basket();
         Airport airport1 = new Airport(44, 120, 100);
@@ -463,7 +498,8 @@ class BasketTest {      // 7 points
     }
 
     @Test
-    @Tag("score:1") @DisplayName("Basket clear() Test1")
+    @Tag("score:1")
+    @DisplayName("Basket clear() Test1")
     void clear() {
         Basket basket1 = new Basket();
         Reservation reservation1 = new BasketTest.FakeReservation("Alex");
@@ -474,9 +510,9 @@ class BasketTest {      // 7 points
                 "Basket: clear() doesn't clear the array of reservations in the basket");
     }
 
-
     @Test
-    @Tag("score:1") @DisplayName("Basket getTotalCost Test1")
+    @Tag("score:1")
+    @DisplayName("Basket getTotalCost Test1")
     void getTotalCost() {
         Basket basket1 = new Basket();
         Airport airport1 = new Airport(44, 120, 100);
@@ -506,5 +542,3 @@ class BasketTest {      // 7 points
         }
     }
 }
-
-

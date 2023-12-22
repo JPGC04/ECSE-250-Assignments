@@ -20,7 +20,7 @@ public class Basket {
         }
         tempReservations[tempReservations.length - 1] = reservationObject;
         this.reservationArray = tempReservations;
-        this.numOfReservations ++;
+        this.numOfReservations++;
         return this.numOfReservations;
     }
 

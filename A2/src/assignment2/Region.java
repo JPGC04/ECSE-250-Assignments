@@ -17,6 +17,7 @@ public class Region {
     }
 
     public boolean contains(Position inputPos) {
-        return (inputPos.getX() >= this.minX && inputPos.getX() <= this.maxX && inputPos.getY() >= this.minY && inputPos.getY() <= this.maxY);
+        return (inputPos.getX() >= this.minX && inputPos.getX() <= this.maxX && inputPos.getY() >= this.minY
+                && inputPos.getY() <= this.maxY);
     }
 }

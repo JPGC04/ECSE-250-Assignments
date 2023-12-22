@@ -15,10 +15,14 @@ public class FlightReservation extends Reservation {
     }
 
     public int getCost() {
-        return (int) Math.ceil((Airport.getDistance(this.departureAirport, this.arrivalAirport)/167.52*124) + departureAirport.getFees() + arrivalAirport.getFees() + 5375);
+        return (int) Math.ceil((Airport.getDistance(this.departureAirport, this.arrivalAirport) / 167.52 * 124)
+                + departureAirport.getFees() + arrivalAirport.getFees() + 5375);
     }
 
     public boolean equals(Object inputObject) {
-        return ((inputObject instanceof FlightReservation) && (this.departureAirport.equals(((FlightReservation) inputObject).departureAirport)) && (this.arrivalAirport.equals(((FlightReservation) inputObject).arrivalAirport)) && (this.reservationName() == ((FlightReservation) inputObject).reservationName()));
+        return ((inputObject instanceof FlightReservation)
+                && (this.departureAirport.equals(((FlightReservation) inputObject).departureAirport))
+                && (this.arrivalAirport.equals(((FlightReservation) inputObject).arrivalAirport))
+                && (this.reservationName() == ((FlightReservation) inputObject).reservationName()));
     }
 }

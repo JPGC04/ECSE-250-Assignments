@@ -13,9 +13,12 @@ public class Airport {
         this.airportFees = airportFees;
     }
 
-    public int getFees() { return airportFees; }
+    public int getFees() {
+        return airportFees;
+    }
 
     public static int getDistance(Airport airport1, Airport airport2) {
-        return (int) Math.ceil(java.lang.Math.sqrt((Math.pow(airport1.xCoord - airport2.xCoord, 2) + Math.pow(airport1.yCoord - airport2.yCoord,2))));
+        return (int) Math.ceil(java.lang.Math.sqrt(
+                (Math.pow(airport1.xCoord - airport2.xCoord, 2) + Math.pow(airport1.yCoord - airport2.yCoord, 2))));
     }
 }

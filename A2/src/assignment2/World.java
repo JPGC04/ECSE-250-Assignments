@@ -33,7 +33,7 @@ public class World {
             headPos.moveWest();
         } else if (nextDir == Direction.NORTH) {
             headPos.moveNorth();
-        } else if (nextDir == Direction.SOUTH){
+        } else if (nextDir == Direction.SOUTH) {
             headPos.moveSouth();
         }
         if (!(this.region.contains(headPos))) {
@@ -43,7 +43,7 @@ public class World {
                 headPos.moveEast();
             } else if (nextDir == Direction.NORTH) {
                 headPos.moveSouth();
-            } else if (nextDir == Direction.SOUTH){
+            } else if (nextDir == Direction.SOUTH) {
                 headPos.moveNorth();
             }
             this.gameState = GameState.WALL_COLLISION;
@@ -67,12 +67,15 @@ public class World {
     public GameState getState() {
         return this.gameState;
     }
+
     public Caterpillar getCaterpillar() {
         return this.caterpillar;
     }
+
     public Position getFood() {
         return this.position;
     }
+
     public boolean isRunning() {
         return ((this.gameState == GameState.MOVE) || (this.gameState == GameState.EAT));
     }
